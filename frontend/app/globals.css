@@ -1,0 +1,339 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  
+  --color-bg-base: var(--bg-base);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-panel: var(--bg-panel);
+  --color-bg-hover: var(--bg-hover);
+  --color-bg-active: var(--bg-active);
+
+  --color-border-subtle: var(--border-subtle);
+  --color-border-default: var(--border-default);
+  --color-border-strong: var(--border-strong);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-disabled: var(--text-disabled);
+
+  --color-accent-emerald: var(--accent-emerald);
+  
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root, .dark {
+  --background: #0B0D10;
+  --foreground: #F5F7FA;
+  --card: #161A20;
+  --card-foreground: #F5F7FA;
+  --popover: #111418;
+  --popover-foreground: #F5F7FA;
+  --primary: #10B981;
+  --primary-foreground: #0B0D10;
+  --secondary: #1C2128;
+  --secondary-foreground: #F5F7FA;
+  --muted: #1C2128;
+  --muted-foreground: #B5BDC8;
+  --accent: #232A33;
+  --accent-foreground: #10B981;
+  --destructive: #EF4444;
+  --border: rgba(255, 255, 255, 0.09);
+  --input: rgba(255, 255, 255, 0.09);
+  --ring: #10B981;
+  --radius: 0.5rem;
+
+  /* Semantic tokens */
+  --bg-base: #0B0D10;
+  --bg-elevated: #111418;
+  --bg-panel: #161A20;
+  --bg-hover: #1C2128;
+  --bg-active: #232A33;
+
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.14);
+
+  --text-primary: #F5F7FA;
+  --text-secondary: #B5BDC8;
+  --text-muted: #7D8794;
+  --text-disabled: #5D6670;
+
+  --accent-emerald: #10B981;
+
+  --sidebar: #111418;
+  --sidebar-foreground: #B5BDC8;
+  --sidebar-primary: #10B981;
+  --sidebar-primary-foreground: #0B0D10;
+  --sidebar-accent: #1C2128;
+  --sidebar-accent-foreground: #F5F7FA;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-ring: #10B981;
+
+  /* Motion variables */
+  --duration-short: 120ms;
+  --duration-medium: 200ms;
+  --duration-overlay: 260ms;
+  --ease-out: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+  
+  /* Ensure all clickable/interactive elements show a pointer cursor */
+  button,
+  a,
+  [role="button"],
+  [type="button"],
+  [type="submit"],
+  [type="reset"] {
+    cursor: pointer !important;
+  }
+}
+
+.app-shell {
+  background:
+    radial-gradient(ellipse 60% 40% at 50% -10%, rgba(16, 185, 129, 0.05), transparent),
+    var(--background);
+}
+
+/* Premium Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-active);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-disabled);
+}
+
+/* Premium smooth transitions */
+.transition-premium {
+  transition: all var(--duration-medium) var(--ease-out);
+}
+
+/* Precise resets for borderless editor body and formatting typography */
+.ProseMirror, .prose .ProseMirror, .prose-invert .ProseMirror {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-size: 1rem !important;
+  line-height: 1.625 !important;
+  color: var(--text-secondary) !important;
+}
+
+.ProseMirror:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Headings (Apple Notes / Notion-lite style) with maximum overrides */
+.ProseMirror h1, .prose .ProseMirror h1, .prose-invert .ProseMirror h1 {
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.5rem !important;
+  line-height: 1.25 !important;
+  display: block !important;
+}
+
+.ProseMirror h2, .prose .ProseMirror h2, .prose-invert .ProseMirror h2 {
+  font-size: 1.35rem !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.35rem !important;
+  line-height: 1.3 !important;
+  display: block !important;
+}
+
+.ProseMirror h3, .prose .ProseMirror h3, .prose-invert .ProseMirror h3 {
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1.3 !important;
+  display: block !important;
+}
+
+/* Paragraph spacing */
+.ProseMirror p, .prose .ProseMirror p, .prose-invert .ProseMirror p {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  display: block !important;
+}
+
+/* Generic List Styles - ensures bullet points and numbers show */
+.ProseMirror ul, .prose .ProseMirror ul, .prose-invert .ProseMirror ul {
+  list-style-type: disc !important;
+  padding-left: 1.5rem !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.ProseMirror ol, .prose .ProseMirror ol, .prose-invert .ProseMirror ol {
+  list-style-type: decimal !important;
+  padding-left: 1.5rem !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.ProseMirror li, .prose .ProseMirror li, .prose-invert .ProseMirror li {
+  margin-bottom: 0.25rem !important;
+  display: list-item !important;
+}
+
+/* Blockquote styling (Premium subtle left border and transparent tint) */
+.ProseMirror blockquote, .prose .ProseMirror blockquote, .prose-invert .ProseMirror blockquote {
+  border-left: 3px solid var(--accent-emerald) !important;
+  padding-left: 1rem !important;
+  color: var(--text-secondary) !important;
+  font-style: italic !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  background-color: rgba(16, 185, 129, 0.04) !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  padding-right: 0.75rem !important;
+  border-radius: 0 0.375rem 0.375rem 0 !important;
+}
+
+/* Code block styling */
+.ProseMirror pre, .prose .ProseMirror pre {
+  background-color: var(--bg-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem 1rem !important;
+  font-family: var(--font-mono), monospace !important;
+  font-size: 0.875rem !important;
+  overflow-x: auto !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  color: #E2E8F0 !important;
+}
+
+.ProseMirror pre code, .prose .ProseMirror pre code {
+  background: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-size: inherit !important;
+  color: inherit !important;
+}
+
+.ProseMirror code, .prose .ProseMirror code {
+  background-color: var(--bg-hover) !important;
+  color: var(--accent-emerald) !important;
+  padding: 0.125rem 0.25rem !important;
+  border-radius: 0.25rem !important;
+  font-family: var(--font-mono), monospace !important;
+  font-size: 0.875rem !important;
+}
+
+/* Checklist / TaskList Tiptap Styling (Aligned items, no wrapping) */
+.ProseMirror ul[data-type="taskList"], .prose .ProseMirror ul[data-type="taskList"] {
+  list-style: none !important;
+  list-style-type: none !important;
+  padding: 0 !important;
+  padding-left: 0 !important;
+  margin: 0.5rem 0 !important;
+}
+
+.ProseMirror ul[data-type="taskList"] li, .prose .ProseMirror ul[data-type="taskList"] li {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.5rem !important;
+  margin-bottom: 0.35rem !important;
+  list-style-type: none !important;
+}
+
+.ProseMirror ul[data-type="taskList"] li > label, .prose .ProseMirror ul[data-type="taskList"] li > label {
+  user-select: none;
+  margin-top: 0.25rem !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+}
+
+.ProseMirror ul[data-type="taskList"] li > label input[type="checkbox"], .prose .ProseMirror ul[data-type="taskList"] li > label input[type="checkbox"] {
+  accent-color: var(--accent-emerald) !important;
+  cursor: pointer;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--border-strong) !important;
+  background-color: var(--bg-elevated) !important;
+}
+
+.ProseMirror ul[data-type="taskList"] li > div, .prose .ProseMirror ul[data-type="taskList"] li > div {
+  flex: 1 !important;
+}
+
+/* Fixes the paragraph inside list element to display inline/remove block margin */
+.ProseMirror ul[data-type="taskList"] li > div > p, .prose .ProseMirror ul[data-type="taskList"] li > div > p {
+  margin: 0 !important;
+  line-height: 1.5 !important;
+  display: block !important;
+}
+
+.ProseMirror ul[data-type="taskList"] li[data-checked="true"] > div, .prose .ProseMirror ul[data-type="taskList"] li[data-checked="true"] > div {
+  text-decoration: line-through !important;
+  color: var(--text-muted) !important;
+}
